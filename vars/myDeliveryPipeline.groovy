@@ -14,15 +14,15 @@ def call(Map pipelineParams) {
         }*/
 
         stages {
+            stage('Checkout') {
+                steps {
+                    git changelog: false, url: pipelineParams.repoUrl
+                }
+            }
             stage('Debug') {
                 steps {
                     print pipelineParams
                     sh 'printenv'
-                }
-            }
-            stage('Checkout') {
-                steps {
-                    git changelog: false, url: pipelineParams.repoUrl
                 }
             }
             /*stage('Build Binary') {
