@@ -57,11 +57,8 @@ def call(Map pipelineParams) {
 }
 
 def resolveParam(String param) {
-    //matches = param =~ /([^\/]+$)/
-    //print matches
-    //repoName = matches[0][0] 
-    //nameWithoutExtension = repoName.replaceFirst(/\.git$/, "")
     urlParts = param.split('/') as List
     repoName = urlParts.last()
-    return repoName
+    repoNameWithExtension = repoName.replaceFirst(/\.git$/, "")
+    return repoNameWithExtension
 }
