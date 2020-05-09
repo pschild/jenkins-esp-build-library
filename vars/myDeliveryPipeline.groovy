@@ -6,12 +6,12 @@ def call(Map pipelineParams) {
             choice(name: 'ESP', choices: loadESPDefinitions(), description: 'Choose Target ESP')
         }*/
 
-        /*environment {
-            FIRMWARE_NAME="${sh(script:'echo ${GIT_URL} | grep -P "([^/]+$)" -o | sed "s/.git//g"', returnStdout: true).trim()}"
+        environment {
+            FIRMWARE_NAME="${sh(script:'echo ${pipelineParams.repoUrl} | grep -P "([^/]+$)" -o | sed "s/.git//g"', returnStdout: true).trim()}"
             FIRMWARE_VERSION = "v${BUILD_NUMBER}-${sh(script:'git rev-parse HEAD', returnStdout: true).trim().take(7)}"
-            CHIPID="${sh(script:'echo $ESP | cut -d"|" -f1', returnStdout: true).trim()}"
-            PIOENV="${sh(script:'echo $ESP | cut -d"|" -f2', returnStdout: true).trim()}"
-        }*/
+            //CHIPID="${sh(script:'echo $ESP | cut -d"|" -f1', returnStdout: true).trim()}"
+            //PIOENV="${sh(script:'echo $ESP | cut -d"|" -f2', returnStdout: true).trim()}"
+        }
 
         stages {
             stage('Checkout') {
