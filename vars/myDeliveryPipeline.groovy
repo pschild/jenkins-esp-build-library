@@ -8,7 +8,7 @@ def call(Map pipelineParams) {
 
         environment {
             //FIRMWARE_NAME="${sh(script:'echo ${pipelineParams.repoUrl} | grep -P "([^/]+$)" -o | sed "s/.git//g"', returnStdout: true).trim()}"
-            FIRMWARE_NAME="${sh(script:'echo "${pipelineParams.repoUrl}" | grep -P "([^/]+$)" -o | sed "s/.git//g"', returnStdout: true).trim()}"
+            FIRMWARE_NAME="${sh(script:'echo "\${pipelineParams.repoUrl}" | grep -P "([^/]+$)" -o | sed "s/.git//g"', returnStdout: true).trim()}"
             FIRMWARE_VERSION="v${BUILD_NUMBER}-${sh(script:'git rev-parse HEAD', returnStdout: true).trim().take(7)}"
             //CHIPID="${sh(script:'echo $ESP | cut -d"|" -f1', returnStdout: true).trim()}"
             //PIOENV="${sh(script:'echo $ESP | cut -d"|" -f2', returnStdout: true).trim()}"
