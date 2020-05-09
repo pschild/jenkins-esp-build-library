@@ -1,4 +1,5 @@
-@NonCPS
+import com.cloudbees.groovy.cps.NonCPS
+
 def call(Map pipelineParams) {
     pipeline {
         agent any
