@@ -56,6 +56,7 @@ def resolveFirmwareName(String repoUrl) {
     return repoNameWithExtension
 }
 
+// TODO: auslagern und json ggf. anders laden, s. https://www.jenkins.io/doc/pipeline/steps/pipeline-utility-steps/ "readJson"
 import groovy.json.JsonSlurper
 def loadESPDefinitions() {
     def jsonSlurper = new JsonSlurper()
