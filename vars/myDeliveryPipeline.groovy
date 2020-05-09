@@ -20,12 +20,12 @@ def call(Map pipelineParams) {
                     sh 'printenv'
                 }
             }
-            /*stage('Checkout') {
+            stage('Checkout') {
                 steps {
                     git changelog: false, url: pipelineParams.repoUrl
                 }
             }
-            stage('Build Binary') {
+            /*stage('Build Binary') {
                 steps {
                     withCredentials([usernamePassword(credentialsId: '4ba76353-3bab-4d0d-9364-9f9e9909495f', passwordVariable: 'WIFI_PASS', usernameVariable: 'WIFI_SSID')]) {
                         sh '''
