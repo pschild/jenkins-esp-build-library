@@ -12,7 +12,7 @@ def call(Map pipelineParams) {
                 script: """
                     #!/bin/bash
                     myvar=${pipelineParams.repoUrl}
-                    echo "\$myvar"
+                    echo $myvar
                 """,
                 returnStdout: true
             ).trim()
