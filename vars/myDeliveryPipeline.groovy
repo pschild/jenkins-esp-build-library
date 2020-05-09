@@ -61,5 +61,6 @@ def resolveParam(String param) {
     //print matches
     //repoName = matches[0][0] 
     //nameWithoutExtension = repoName.replaceFirst(/\.git$/, "")
-    return param.split('/')
+    repoName = param.split('/').pop()
+    return repoName
 }
