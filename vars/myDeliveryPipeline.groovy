@@ -56,6 +56,7 @@ def call(Map pipelineParams) {
     }
 }
 
+@NonCPS
 def resolveParam(String param) {
     matches = param =~ /([^\/]+$)/
     print matches
