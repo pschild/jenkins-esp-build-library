@@ -11,7 +11,9 @@ def call(Map pipelineParams) {
             FIRMWARE_NAME=sh(
                 script: """
                     #!/bin/bash
-                    echo "${pipelineParams.repoUrl}" | grep -P "([^/]+$)" -o
+                    echo ${pipelineParams.repoUrl}
+                    echo "https://github.com/pschild/test-foo.git"
+                    echo "https://github.com/pschild/test-foo.git" | grep -P "([^/]+$)" -o
                 """,
                 returnStdout: true
             ).trim()
