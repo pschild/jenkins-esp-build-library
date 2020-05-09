@@ -10,7 +10,7 @@ def call(Map pipelineParams) {
             //FIRMWARE_NAME="${sh(script:'echo ${pipelineParams.repoUrl} | grep -P "([^/]+$)" -o | sed "s/.git//g"', returnStdout: true).trim()}"
             FIRMWARE_NAME=sh(
                 script: '''
-                    echo Hallo
+                    echo Hallo "\${pipelineParams.repoUrl}"
                 ''',
                 returnStdout: true
             ).trim()
