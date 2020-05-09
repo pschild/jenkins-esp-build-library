@@ -2,9 +2,9 @@ def call(Map pipelineParams) {
     pipeline {
         agent any
 
-        parameters {
+        //parameters {
             // choice(name: 'ESP', choices: loadESPDefinitions(), description: 'Choose Target ESP')
-        }
+        //}
 
         environment {
             FIRMWARE_NAME="${sh(script:'echo ${GIT_URL} | grep -P "([^/]+$)" -o | sed "s/.git//g"', returnStdout: true).trim()}"
