@@ -1,5 +1,3 @@
-import com.cloudbees.groovy.cps.NonCPS
-
 def call(Map pipelineParams) {
     pipeline {
         agent any
@@ -58,11 +56,10 @@ def call(Map pipelineParams) {
     }
 }
 
-@NonCPS
 def resolveParam(String param) {
-    matches = param =~ /([^\/]+$)/
-    print matches
+    //matches = param =~ /([^\/]+$)/
+    //print matches
     //repoName = matches[0][0] 
     //nameWithoutExtension = repoName.replaceFirst(/\.git$/, "")
-    return "xyz"
+    return param.split('/')
 }
