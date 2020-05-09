@@ -2,9 +2,9 @@ def call(Map pipelineParams) {
     pipeline {
         agent any
 
-        /*parameters {
+        parameters {
             choice(name: 'ESP', choices: loadESPDefinitions(), description: 'Choose Target ESP')
-        }*/
+        }
 
         environment {
             FIRMWARE_NAME=resolveFirmwareName(pipelineParams.repoUrl)
@@ -54,4 +54,18 @@ def resolveFirmwareName(String repoUrl) {
     repoName = urlParts.last()
     repoNameWithExtension = repoName.replaceFirst(/\.git$/, "")
     return repoNameWithExtension
+}
+
+import groovy.json.JsonSlurper
+def loadESPDefinitions() {
+    def jsonSlurper = new JsonSlurper()
+    URL jsonUrl = new URL("https://raw.githubusercontent.com/pschild/esp-jenkins-config/master/esp-config.json")
+    def jsonResponse = jsonSlurper.parse(jsonUrl)
+    
+    def result = []
+    jsonResponse.each {
+        result << it.chipId + "|" + it.pioEnv
+    }
+    
+    return result
 }
