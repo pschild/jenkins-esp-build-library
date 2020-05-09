@@ -57,5 +57,5 @@ def call(Map pipelineParams) {
 }
 
 def resolveParam(String param) {
-	return "xx" + param + "xx"
+    return param ~= ([^/]+$)
 }
