@@ -20,7 +20,7 @@ def call(Map pipelineParams) {
                     sh 'printenv'
                 }
             }
-            stage('Checkout') {
+            /*stage('Checkout') {
                 steps {
                     git changelog: false, url: pipelineParams.repoUrl
                 }
@@ -44,7 +44,7 @@ def call(Map pipelineParams) {
                         mv ${FILENAME} ${TARGETNAME}
                     '''
                 }
-            }
+            }*/
         }
     }
 }
