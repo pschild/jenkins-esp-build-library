@@ -12,8 +12,6 @@ def call(Map pipelineParams) {
                 script: """
                     #!/bin/bash
                     echo ${pipelineParams.repoUrl}
-                    echo "https://github.com/pschild/test-foo.git"
-                    echo "https://github.com/pschild/test-foo.git" | grep -P "([^/]+$)" -o
                 """,
                 returnStdout: true
             ).trim()
