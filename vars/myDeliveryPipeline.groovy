@@ -16,7 +16,7 @@ def call(Map pipelineParams) {
         stages {
             stage('Debug') {
                 steps {
-                    echo pipelineParams
+                    print pipelineParams
                     sh 'printenv'
                 }
             }
