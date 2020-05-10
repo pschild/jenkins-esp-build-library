@@ -1,9 +1,11 @@
+def xyz = new EspConfigLoader(libraryResource("test.json")).parseIt()
+
 def call(Map pipelineParams) {
     pipeline {
         agent any
 
         parameters {
-            choice(name: 'ESP', choices: ${new EspConfigLoader(libraryResource("test.json")).parseIt()}, description: 'Choose Target ESP')
+            choice(name: 'ESP', choices: xyz, description: 'Choose Target ESP')
         }
 
         environment {
