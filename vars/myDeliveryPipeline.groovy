@@ -1,6 +1,7 @@
-xyz = new EspConfigLoader(libraryResource("test.json")).parseIt()
-
 def call(Map pipelineParams) {
+    
+    def xyz = new EspConfigLoader(libraryResource("test.json")).parseIt()
+    
     pipeline {
         agent any
 
