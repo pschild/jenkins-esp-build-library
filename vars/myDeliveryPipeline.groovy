@@ -3,7 +3,7 @@ def call(Map pipelineParams) {
         agent any
 
         parameters {
-            choice(name: 'ESP', choices: loadESPDefinitions(), description: 'Choose Target ESP')
+            choice(name: 'ESP', choices: new EspConfigLoader(libraryResource("test.json")).parseIt(), description: 'Choose Target ESP')
         }
 
         environment {
