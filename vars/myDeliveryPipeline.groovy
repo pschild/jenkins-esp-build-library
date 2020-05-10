@@ -61,15 +61,15 @@ def resolveFirmwareName(String repoUrl) {
 import groovy.json.JsonSlurper
 def loadESPDefinitions() {
     def data = libraryResource("test.json")
-    print data
-    /*def jsonSlurper = new JsonSlurper()
-    URL jsonUrl = new URL("https://raw.githubusercontent.com/pschild/esp-jenkins-config/master/esp-config.json")
-    def jsonResponse = jsonSlurper.parse(jsonUrl)
+    def jsonSlurper = new JsonSlurper()
+    //URL jsonUrl = new URL("https://raw.githubusercontent.com/pschild/esp-jenkins-config/master/esp-config.json")
+    def jsonResponse = jsonSlurper.parse(data)
     
     def result = []
     jsonResponse.each {
-        result << it.chipId + "|" + it.pioEnv
+        //result << it.chipId + "|" + it.pioEnv
+        result << it.name + "|" + it.sense
     }
     
-    return result*/
+    return result
 }
