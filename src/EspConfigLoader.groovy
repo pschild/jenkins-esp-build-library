@@ -1,17 +1,20 @@
+import groovy.json.JsonSlurper
+
 class EspConfigLoader {
-    private int x;
-    private int y;
+    private JsonSlurper slurper = new JsonSlurper()
+    private String path
 
-    public EspConfigLoader(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public EspConfigLoader(String path) {
+        this.path = path
     }
+    
+    public parseIt() {
+        def jsonResponse = this.slurper.parseText(libraryResource(this.path))
+        def result = []
+        jsonResponse.each {
+            result << it.chipId + "|" + it.pioEnv
+        }
 
-    @Override
-    public String toString() {
-        return "EspConfigLoader{" +
-                "x=" + x +
-                ", y=" + y +
-                '}';
+        return result
     }
 }
