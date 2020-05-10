@@ -1,4 +1,6 @@
 [
-  { "name": "foo", "sense": 42 },
-  { "name": "bar", "sense": 43 }
+  { "id": 1, "model": "ESP-12F", "description": "Bewegungsmelder AM312, Schlafzimmer", "pioEnv": "esp12e", "chipId": 3357047 },
+  { "id": 2, "model": "ESP-12F", "description": "nicht verbaut", "pioEnv": "esp12e", "chipId": 7888034 },
+  { "id": 5, "model": "ESP-01", "description": "nicht verbaut", "pioEnv": "esp01_1m", "chipId": -1 },
+  { "id": 6, "model": "NodeMCU", "description": "OTA Test", "pioEnv": "nodemcuv2", "chipId": 750287 }
 ]
