@@ -22,7 +22,7 @@ def call(Map pipelineParams) {
             stage('Debug') {
                 steps {
                     print pipelineParams
-                    print libraryResource("test.json")
+                    print new EspConfigLoader(1, 3).toString()
                     sh 'printenv'
                 }
             }
