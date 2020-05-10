@@ -67,6 +67,6 @@ def loadESPDefinitions() {
     }
     
     return result*/
-    def loader = new EspConfigLoader(script:this, "test.json")
+    def loader = new EspConfigLoader(libraryResource("test.json"))
     return loader.parseIt()
 }
