@@ -56,17 +56,6 @@ def resolveFirmwareName(String repoUrl) {
     return repoNameWithExtension
 }
 
-//import groovy.json.JsonSlurper
 def loadESPDefinitions() {
-    /*def jsonSlurper = new JsonSlurper()
-    def jsonResponse = jsonSlurper.parseText(libraryResource("test.json"))
-    
-    def result = []
-    jsonResponse.each {
-        result << it.chipId + "|" + it.pioEnv
-    }
-    
-    return result*/
-    def loader = new EspConfigLoader(libraryResource("test.json"))
-    return loader.parseIt()
+    return new EspConfigLoader(libraryResource("test.json")).parseIt()
 }
