@@ -28,17 +28,17 @@ def call(Map pipelineParams) {
                     sh 'printenv'
                 }
             }
-            /*stage('Build Binary') {
+            stage('Build Binary') {
                 steps {
                     withCredentials([usernamePassword(credentialsId: '4ba76353-3bab-4d0d-9364-9f9e9909495f', passwordVariable: 'WIFI_PASS', usernameVariable: 'WIFI_SSID')]) {
                         sh '''
                             pio run -t clean -e ${PIOENV}
-                            pio run -e ${PIOENV} -v
+                            pio run -e ${PIOENV}
                         '''
                     }
                 }
-            }*/
-            /*stage('Copy Binary') {
+            }
+            stage('Copy Binary') {
                 steps {
                     sh '''
                         FILENAME=.pio/build/${PIOENV}/firmware.bin
@@ -47,7 +47,7 @@ def call(Map pipelineParams) {
                         mv ${FILENAME} ${TARGETNAME}
                     '''
                 }
-            }*/
+            }
         }
     }
 }
