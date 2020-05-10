@@ -2,15 +2,14 @@ import groovy.json.JsonSlurper
 
 class EspConfigLoader {
     private JsonSlurper slurper = new JsonSlurper()
-    String path
-    Script script
+    String jsonStr
 
-    /*public EspConfigLoader(String path) {
-        this.path = path
-    }*/
+    public EspConfigLoader(String jsonStr) {
+        this.jsonStr = jsonStr
+    }
     
     public parseIt() {
-        def jsonResponse = this.slurper.parseText(script.libraryResource(this.path))
+        def jsonResponse = this.slurper.parseText(this.jsonStr)
         def result = []
         jsonResponse.each {
             result << it.chipId + "|" + it.pioEnv
