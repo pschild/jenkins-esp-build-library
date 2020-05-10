@@ -22,7 +22,6 @@ def call(Map pipelineParams) {
             stage('Debug') {
                 steps {
                     print pipelineParams
-                    print new EspConfigLoader(1, 3).toString()
                     sh 'printenv'
                 }
             }
@@ -57,9 +56,9 @@ def resolveFirmwareName(String repoUrl) {
     return repoNameWithExtension
 }
 
-import groovy.json.JsonSlurper
+//import groovy.json.JsonSlurper
 def loadESPDefinitions() {
-    def jsonSlurper = new JsonSlurper()
+    /*def jsonSlurper = new JsonSlurper()
     def jsonResponse = jsonSlurper.parseText(libraryResource("test.json"))
     
     def result = []
@@ -67,5 +66,7 @@ def loadESPDefinitions() {
         result << it.chipId + "|" + it.pioEnv
     }
     
-    return result
+    return result*/
+    def loader = new EspConfigLoader("test.json")
+    return loader.parseIt()
 }
