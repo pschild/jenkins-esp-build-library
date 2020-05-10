@@ -1,6 +1,6 @@
 def call(Map pipelineParams) {
     
-    def espChoices = new EspChoiceBuilder(libraryResource("test.json")).build()
+    def espChoices = new EspChoiceBuilder(libraryResource("esp-config.json")).build()
     
     pipeline {
         agent any
