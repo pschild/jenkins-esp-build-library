@@ -63,7 +63,7 @@ def loadESPDefinitions() {
     def data = libraryResource("test.json")
     def jsonSlurper = new JsonSlurper()
     //URL jsonUrl = new URL("https://raw.githubusercontent.com/pschild/esp-jenkins-config/master/esp-config.json")
-    def jsonResponse = jsonSlurper.parse(data)
+    def jsonResponse = jsonSlurper.parseText(data)
     
     def result = []
     jsonResponse.each {
