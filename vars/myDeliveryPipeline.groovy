@@ -1,12 +1,12 @@
 def call(Map pipelineParams) {
     
-    def xyz = new EspConfigLoader(libraryResource("test.json")).parseIt()
+    def espChoices = new EspChoiceBuilder(libraryResource("test.json")).build()
     
     pipeline {
         agent any
 
         parameters {
-            choice(name: 'ESP', choices: xyz, description: 'Choose Target ESP')
+            choice(name: 'ESP', choices: espChoices, description: 'Choose Target ESP')
         }
 
         environment {
@@ -57,8 +57,4 @@ def resolveFirmwareName(String repoUrl) {
     repoName = urlParts.last()
     repoNameWithExtension = repoName.replaceFirst(/\.git$/, "")
     return repoNameWithExtension
-}
-
-def loadESPDefinitions() {
-    return new EspConfigLoader(libraryResource("test.json")).parseIt()
 }
