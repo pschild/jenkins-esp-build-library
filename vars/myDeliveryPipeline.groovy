@@ -1,4 +1,4 @@
-def xyz = new EspConfigLoader(libraryResource("test.json")).parseIt()
+xyz = new EspConfigLoader(libraryResource("test.json")).parseIt()
 
 def call(Map pipelineParams) {
     pipeline {
