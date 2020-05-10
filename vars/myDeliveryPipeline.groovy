@@ -60,7 +60,7 @@ def resolveFirmwareName(String repoUrl) {
 // TODO: auslagern und json ggf. anders laden, s. https://www.jenkins.io/doc/pipeline/steps/pipeline-utility-steps/ "readJson"
 import groovy.json.JsonSlurper
 def loadESPDefinitions() {
-    def data = readJSON file: libraryResource("test.json")
+    def data = readFile("test.json")
     print data
     /*def jsonSlurper = new JsonSlurper()
     URL jsonUrl = new URL("https://raw.githubusercontent.com/pschild/esp-jenkins-config/master/esp-config.json")
