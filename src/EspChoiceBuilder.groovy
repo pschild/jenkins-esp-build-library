@@ -1,14 +1,14 @@
 import groovy.json.JsonSlurper
 
-class EspConfigLoader {
+class EspChoiceBuilder {
     private JsonSlurper slurper = new JsonSlurper()
     String jsonStr
 
-    public EspConfigLoader(String jsonStr) {
+    public EspChoiceBuilder(String jsonStr) {
         this.jsonStr = jsonStr
     }
     
-    public parseIt() {
+    public build() {
         def jsonResponse = this.slurper.parseText(this.jsonStr)
         def result = []
         jsonResponse.each {
