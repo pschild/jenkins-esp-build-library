@@ -3,13 +3,12 @@ def call(Map pipelineParams) {
     pipeline {
         agent any
 
-        // properties([pipelineTriggers([pollSCM('H * * ...')])])
+        // properties([pipelineTriggers([pollSCM('H/5 * * * *')])])
 
         stages {
             stage('Checkout') {
                 steps {
-                    git changelog: false, url: pipelineParams.repoUrl
-                    // git poll: true
+                    git changelog: false, url: pipelineParams.repoUrl/*, poll: true*/
                 }
             }
             stage('Debug') {
@@ -18,7 +17,7 @@ def call(Map pipelineParams) {
                     sh 'printenv'
                 }
             }
-            stage('Install') {
+            /*stage('Install') {
                 steps {
                     sh 'npm install'
                 }
@@ -27,15 +26,17 @@ def call(Map pipelineParams) {
                 steps {
                     sh 'npm test'
                 }
-            }
-            stage('Build and push docker image') {
+            }*/
+            /*stage('Build and push docker image') {
                 steps {
                     sh '''
-                        docker x
-                        docker y
+                        docker build -t foo .
+                        docker tag foo:latest localhost:5000/esp-update-server
+                        docker push localhost:5000/esp-update-server
+                        docker rmi foo:latest
                     '''
                 }
-            }
+            }*/
         }
     }
 }
