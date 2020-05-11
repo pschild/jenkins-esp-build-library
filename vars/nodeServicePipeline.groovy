@@ -2,6 +2,10 @@ def call(Map pipelineParams) {
 
     pipeline {
         agent any
+        
+        triggers { 
+            pollSCM('H/5 * * * *') 
+        }
 
         // properties([pipelineTriggers([pollSCM('H/5 * * * *')])])
 
