@@ -3,10 +3,13 @@ def call(Map pipelineParams) {
     pipeline {
         agent any
 
+        // properties([pipelineTriggers([pollSCM('H * * ...')])])
+
         stages {
             stage('Checkout') {
                 steps {
                     git changelog: false, url: pipelineParams.repoUrl
+                    // git poll: true
                 }
             }
             stage('Debug') {
