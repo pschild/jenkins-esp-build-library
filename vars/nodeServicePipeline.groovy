@@ -6,6 +6,10 @@ def call(Map pipelineParams) {
         triggers {
             pollSCM('H/5 * * * *')
         }
+        
+        environment {
+            REPO_NAME=resolveRepoName(pipelineParams.repoUrl)
+        }
 
         stages {
             stage('Checkout') {
@@ -29,16 +33,23 @@ def call(Map pipelineParams) {
                     sh 'npm test'
                 }
             }
-            /*stage('Build and push docker image') {
+            stage('Build and push docker image') {
                 steps {
                     sh '''
                         docker build -t foo .
-                        docker tag foo:latest localhost:5000/esp-update-server
-                        docker push localhost:5000/esp-update-server
+                        docker tag foo:latest localhost:5000/${REPO_NAME}
+                        docker push localhost:5000/${REPO_NAME}
                         docker rmi foo:latest
                     '''
                 }
-            }*/
+            }
         }
     }
+}
+
+def resolveRepoName(String repoUrl) {
+    urlParts = repoUrl.split('/') as List
+    repoName = urlParts.last()
+    repoNameWithExtension = repoName.replaceFirst(/\.git$/, "")
+    return repoNameWithExtension
 }
