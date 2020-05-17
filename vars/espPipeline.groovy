@@ -41,9 +41,7 @@ def call(Map pipelineParams) {
                             pio run -t clean -e ${PIOENV}
                             pio run -e ${PIOENV}
                         '''*/
-                        sh '''
-                            pio run -t clean -e esp12e -e esp01_1m -e nodemcuv2
-                        '''
+                        sh "pio run -t clean ${buildPioEnvCommand(env.getEnvironment().CHIPS_CHOSEN)}"
                     }
                 }
             }
@@ -68,9 +66,10 @@ def resolveFirmwareName(String repoUrl) {
     return repoNameWithExtension
 }
 
-def getUniqueEnvironments(buildTargets) {
-    return (buildTargets.split(",").collect {
+def buildPioEnvCommand(buildTargets) {
+    def uniqueEnvs = (buildTargets.split(",").collect {
         def parts = it.split("\\|")
         return parts[1]
     }).unique()
+    return uniqueEnvs.collect { "-e " + it }
 }
