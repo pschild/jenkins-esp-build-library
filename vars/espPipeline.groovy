@@ -31,6 +31,11 @@ def call(Map pipelineParams) {
                 steps {
                     print pipelineParams
                     sh 'printenv'
+                    echo(env.getEnvironment().each { entry ->
+                        if (entry.key.equals("CHIPS_CHOSEN")) {
+                            println "$entry.key = $entry.value"   
+                        }
+                    })
                 }
             }
             /*stage('Build Binary') {
