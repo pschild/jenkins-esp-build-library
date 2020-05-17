@@ -1,7 +1,7 @@
 def call(Map pipelineParams) {
     
     //def espChoices = new EspChoiceBuilder(libraryResource("esp-config.json")).build()
-    def newChoices = new EspChoiceBuilder(libraryResource("esp-config.json")).build()
+    def newChoices = new EspChoiceBuilder(this, libraryResource("esp-config.json")).build()
     
     def opts = []
     opts.push(parameters(newChoices))
