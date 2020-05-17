@@ -34,7 +34,7 @@ class EspChoiceBuilder {
             visibleItemCount: 50,
             multiSelectDelimiter: ',',
             type: 'PT_CHECKBOX',
-            value: [1,2,3]
+            value: [1,2,3].join(',')
         )
         return result
     }
