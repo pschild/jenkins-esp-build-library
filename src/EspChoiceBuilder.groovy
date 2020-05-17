@@ -20,6 +20,7 @@ class EspChoiceBuilder {
     
     public build() {
         def jsonResponse = this.slurper.parseText(this.jsonStr)
+        def result = []
         result << extendedChoice(
             name: 'CHIPS_CHOSEN',
             description: 'Lorem ipsum',
