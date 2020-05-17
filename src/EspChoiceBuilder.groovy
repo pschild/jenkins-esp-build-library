@@ -37,7 +37,7 @@ class EspChoiceBuilder {
             type: 'PT_CHECKBOX',
             groovyScript: """
                 import groovy.json.JsonSlurper
-                return [1,2,3]
+                return [4,5,6]
             """,
             descriptionGroovyScript: """
                 return $labels
