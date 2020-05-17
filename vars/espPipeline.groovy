@@ -42,7 +42,7 @@ def call(Map pipelineParams) {
                             pio run -e ${PIOENV}
                         '''*/
                         sh '''
-                            pio run -t clean -e esp12e esp01_1m nodemcuv2
+                            pio run -t clean -e esp12e -e esp01_1m -e nodemcuv2
                         '''
                     }
                 }
