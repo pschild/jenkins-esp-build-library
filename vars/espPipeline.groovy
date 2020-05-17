@@ -33,7 +33,7 @@ def call(Map pipelineParams) {
                     sh 'printenv'
                     echo(env.getEnvironment().each { entry ->
                         if (entry.key.equals("CHIPS_CHOSEN")) {
-                            println "$entry.key = $entry.value"   
+                            return "$entry.key = $entry.value"   
                         }
                     })
                 }
