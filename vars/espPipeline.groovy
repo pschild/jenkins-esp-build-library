@@ -31,12 +31,7 @@ def call(Map pipelineParams) {
                 steps {
                     print pipelineParams
                     sh 'printenv'
-                    echo((env.getEnvironment().collect { entry ->
-                        if (entry.key.equals("CHIPS_CHOSEN")) {
-                            return "$entry.key = $entry.value"   
-                        }
-                    }).join("\n"))
-                    print env.getEnvironment().CHIPS_CHOSEN
+                    print getUniqueEnvironments(env.getEnvironment().CHIPS_CHOSEN)
                 }
             }
             /*stage('Build Binary') {
@@ -68,4 +63,11 @@ def resolveFirmwareName(String repoUrl) {
     repoName = urlParts.last()
     repoNameWithExtension = repoName.replaceFirst(/\.git$/, "")
     return repoNameWithExtension
+}
+
+def getUniqueEnvironments(buildTargets) {
+    return (buildTargets.split(",").collect {
+        def parts = it.split("\\|")
+        return parts[1]
+    }).unique()
 }
