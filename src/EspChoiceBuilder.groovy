@@ -34,13 +34,7 @@ class EspChoiceBuilder {
             visibleItemCount: 50,
             multiSelectDelimiter: ',',
             type: 'PT_CHECKBOX',
-            groovyScript: """
-                import groovy.json.JsonSlurper
-                return [4,5,6]
-            """,
-            descriptionGroovyScript: '''
-                return '''+labels+'''
-            '''
+            value: [1,2,3]
         )
         return result
     }
