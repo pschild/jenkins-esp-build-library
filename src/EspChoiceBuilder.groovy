@@ -34,10 +34,10 @@ class EspChoiceBuilder {
             name: 'CHIPS_CHOSEN',
             description: 'Lorem ipsum',
             visibleItemCount: 50,
-            multiSelectDelimiter: '%',
+            multiSelectDelimiter: ';',
             type: 'PT_CHECKBOX',
-            value: values.join('%'),
-            descriptionPropertyValue: labels.join('%')
+            value: values.join(';'),
+            descriptionPropertyValue: labels.join(';')
         )
         return result
     }
