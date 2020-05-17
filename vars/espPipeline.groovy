@@ -38,8 +38,10 @@ def call(Map pipelineParams) {
             }*/
             stage('Copy Binary') {
                 steps {
-                    env.getEnvironment().CHIPS_CHOSEN.split(",").each { item ->
-                        sh "echo Hello ${item}"
+                    script {
+                        env.getEnvironment().CHIPS_CHOSEN.split(",").each { item ->
+                            sh "echo Hello ${item}"
+                        }
                     }
                     /*sh '''
                         FILENAME=.pio/build/${PIOENV}/firmware.bin
