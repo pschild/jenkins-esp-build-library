@@ -26,7 +26,7 @@ class EspChoiceBuilder {
         def labels = []
         jsonResponse.each {
             values << it.chipId + "|" + it.pioEnv
-            labels << "#" + it.id + " " + it.description + " (" + it.model + ")"
+            labels << "#" + it.id + ", " + it.description + " (" + it.model + ")"
         }
         
         def result = []
@@ -34,10 +34,10 @@ class EspChoiceBuilder {
             name: 'CHIPS_CHOSEN',
             description: 'Lorem ipsum',
             visibleItemCount: 50,
-            multiSelectDelimiter: ',',
+            multiSelectDelimiter: '\n',
             type: 'PT_CHECKBOX',
-            value: values.join(','),
-            descriptionPropertyValue: labels.join(',')
+            value: values.join('\n'),
+            descriptionPropertyValue: labels.join('\n')
         )
         return result
     }
