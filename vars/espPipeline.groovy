@@ -71,5 +71,5 @@ def buildPioEnvCommand(buildTargets) {
         def parts = it.split("\\|")
         return parts[1]
     }).unique()
-    return uniqueEnvs.collect { "-e " + it }
+    return (uniqueEnvs.collect { "-e " + it }).join(" ")
 }
