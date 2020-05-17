@@ -3,9 +3,10 @@ import groovy.json.JsonSlurper
 class EspChoiceBuilder {
     private JsonSlurper slurper = new JsonSlurper()
     String jsonStr
+    def steps
 
     public EspChoiceBuilder(steps, String jsonStr) {
-        print steps
+        this.steps = steps
         this.jsonStr = jsonStr
     }
     
@@ -22,7 +23,7 @@ class EspChoiceBuilder {
     public build() {
         def jsonResponse = this.slurper.parseText(this.jsonStr)
         def result = []
-        result << extendedChoice(
+        result << this.steps.extendedChoice(
             name: 'CHIPS_CHOSEN',
             description: 'Lorem ipsum',
             visibleItemCount: 50,
