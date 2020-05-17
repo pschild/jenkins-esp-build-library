@@ -1,13 +1,18 @@
 def call(Map pipelineParams) {
     
-    def espChoices = new EspChoiceBuilder(libraryResource("esp-config.json")).build()
+    //def espChoices = new EspChoiceBuilder(libraryResource("esp-config.json")).build()
+    def newChoices = new EspChoiceBuilder(libraryResource("esp-config.json")).build()
+    
+    def opts = []
+    opts.push(parameters(newChoices))
+    properties(opts)
     
     pipeline {
         agent any
 
-        parameters {
+        /*parameters {
             choice(name: 'ESP', choices: espChoices, description: 'Choose Target ESP')
-        }
+        }*/
 
         environment {
             FIRMWARE_NAME=resolveFirmwareName(pipelineParams.repoUrl)
@@ -28,7 +33,7 @@ def call(Map pipelineParams) {
                     sh 'printenv'
                 }
             }
-            stage('Build Binary') {
+            /*stage('Build Binary') {
                 steps {
                     withCredentials([usernamePassword(credentialsId: '4ba76353-3bab-4d0d-9364-9f9e9909495f', passwordVariable: 'WIFI_PASS', usernameVariable: 'WIFI_SSID')]) {
                         sh '''
@@ -47,7 +52,7 @@ def call(Map pipelineParams) {
                         mv ${FILENAME} ${TARGETNAME}
                     '''
                 }
-            }
+            }*/
         }
     }
 }
