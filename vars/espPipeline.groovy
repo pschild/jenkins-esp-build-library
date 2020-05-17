@@ -1,6 +1,4 @@
 def call(Map pipelineParams) {
-    
-    //def espChoices = new EspChoiceBuilder(libraryResource("esp-config.json")).build()
     def newChoices = new EspChoiceBuilder(this).build()
     
     def opts = []
@@ -9,10 +7,6 @@ def call(Map pipelineParams) {
     
     pipeline {
         agent any
-
-        /*parameters {
-            choice(name: 'ESP', choices: espChoices, description: 'Choose Target ESP')
-        }*/
 
         environment {
             FIRMWARE_NAME=resolveFirmwareName(pipelineParams.repoUrl)
@@ -37,11 +31,8 @@ def call(Map pipelineParams) {
             stage('Build Binary') {
                 steps {
                     withCredentials([usernamePassword(credentialsId: '4ba76353-3bab-4d0d-9364-9f9e9909495f', passwordVariable: 'WIFI_PASS', usernameVariable: 'WIFI_SSID')]) {
-                        /*sh '''
-                            pio run -t clean -e ${PIOENV}
-                            pio run -e ${PIOENV}
-                        '''*/
                         sh "pio run -t clean ${buildPioEnvCommand(env.getEnvironment().CHIPS_CHOSEN)}"
+                        sh "pio run ${buildPioEnvCommand(env.getEnvironment().CHIPS_CHOSEN)}"
                     }
                 }
             }
