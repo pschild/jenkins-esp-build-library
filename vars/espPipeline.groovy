@@ -31,11 +31,11 @@ def call(Map pipelineParams) {
                 steps {
                     print pipelineParams
                     sh 'printenv'
-                    echo(env.getEnvironment().collect { entry ->
+                    echo((env.getEnvironment().collect { entry ->
                         if (entry.key.equals("CHIPS_CHOSEN")) {
                             return "$entry.key = $entry.value"   
                         }
-                    })
+                    }).join("\n"))
                 }
             }
             /*stage('Build Binary') {
