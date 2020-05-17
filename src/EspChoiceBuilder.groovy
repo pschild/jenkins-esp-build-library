@@ -26,7 +26,6 @@ class EspChoiceBuilder {
         jsonResponse.each {
             labels << it.chipId + "|" + it.pioEnv
         }
-        println(labels)
         
         def result = []
         result << this.scriptRef.extendedChoice(
@@ -39,9 +38,7 @@ class EspChoiceBuilder {
                 import groovy.json.JsonSlurper
                 return [4,5,6]
             """,
-            descriptionGroovyScript: """
-                return labels
-            """
+            descriptionGroovyScript: "resturn $labels"
         )
         return result
     }
