@@ -38,7 +38,7 @@ class EspChoiceBuilder {
                 import groovy.json.JsonSlurper
                 return [4,5,6]
             """,
-            descriptionGroovyScript: "resturn $labels"
+            descriptionGroovyScript: "return $labels"
         )
         return result
     }
