@@ -36,6 +36,7 @@ def call(Map pipelineParams) {
                             return "$entry.key = $entry.value"   
                         }
                     }).join("\n"))
+                    print env.getEnvironment().CHIPS_CHOSEN
                 }
             }
             /*stage('Build Binary') {
