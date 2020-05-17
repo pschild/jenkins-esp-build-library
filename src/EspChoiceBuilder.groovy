@@ -2,12 +2,10 @@ import groovy.json.JsonSlurper
 
 class EspChoiceBuilder {
     private JsonSlurper slurper = new JsonSlurper()
-    private String jsonStr
     private scriptRef
 
-    public EspChoiceBuilder(scriptRef, String jsonStr) {
+    public EspChoiceBuilder(scriptRef) {
         this.scriptRef = scriptRef
-        this.jsonStr = jsonStr
     }
     
     /*public build() {
@@ -21,7 +19,7 @@ class EspChoiceBuilder {
     }*/
     
     public build() {
-        def jsonResponse = this.slurper.parseText(this.jsonStr)
+        def jsonResponse = this.slurper.parseText(this.scriptRef.libraryResource("esp-config.json"))
         def values = []
         def labels = []
         jsonResponse.each {
