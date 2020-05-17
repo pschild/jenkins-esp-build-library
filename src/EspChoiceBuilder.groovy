@@ -39,7 +39,7 @@ class EspChoiceBuilder {
                 return [4,5,6]
             """,
             descriptionGroovyScript: '''
-                return '''+labels
+                return '''+labels+'''
             '''
         )
         return result
