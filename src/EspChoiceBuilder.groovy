@@ -26,7 +26,7 @@ class EspChoiceBuilder {
         def labels = []
         jsonResponse.each {
             values << it.chipId + "|" + it.pioEnv
-            labels << "#" + it.id + " " + it.description + " (" + it.model + ")"
+            labels << ("#" + it.id + " " + it.description + " (" + it.model + ")").replace(",", "")
         }
         
         def result = []
