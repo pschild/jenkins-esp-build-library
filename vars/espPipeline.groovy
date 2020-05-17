@@ -31,7 +31,7 @@ def call(Map pipelineParams) {
                 steps {
                     print pipelineParams
                     sh 'printenv'
-                    print getUniqueEnvironments(env.getEnvironment().CHIPS_CHOSEN)
+                    print buildPioEnvCommand(env.getEnvironment().CHIPS_CHOSEN)
                 }
             }
             stage('Build Binary') {
