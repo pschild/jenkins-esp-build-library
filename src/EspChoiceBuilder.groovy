@@ -26,7 +26,7 @@ class EspChoiceBuilder {
         jsonResponse.each {
             labels << it.chipId + "|" + it.pioEnv
         }
-        println($labels)
+        println(labels)
         
         def result = []
         result << this.scriptRef.extendedChoice(
