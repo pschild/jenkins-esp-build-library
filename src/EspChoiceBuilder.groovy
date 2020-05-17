@@ -35,7 +35,7 @@ class EspChoiceBuilder {
             multiSelectDelimiter: ',',
             type: 'PT_CHECKBOX',
             value: [1,2,3].join(','),
-            description: ['A','B','C'].join(',')
+            descriptionPropertyValue: ['A','B','C'].join(',')
         )
         return result
     }
