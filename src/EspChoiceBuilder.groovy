@@ -22,9 +22,11 @@ class EspChoiceBuilder {
     
     public build() {
         def jsonResponse = this.slurper.parseText(this.jsonStr)
+        def values = []
         def labels = []
         jsonResponse.each {
-            labels << it.chipId + "|" + it.pioEnv
+            values << it.chipId + "|" + it.pioEnv
+            labels << "#" + it.id + ", " + it.description + " (" + it.model + ")"
         }
         
         def result = []
@@ -34,8 +36,8 @@ class EspChoiceBuilder {
             visibleItemCount: 50,
             multiSelectDelimiter: ',',
             type: 'PT_CHECKBOX',
-            value: [1,2,3].join(','),
-            descriptionPropertyValue: ['A','B','C'].join(',')
+            value: values.join(','),
+            descriptionPropertyValue: labels.join(',')
         )
         return result
     }
