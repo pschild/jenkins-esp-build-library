@@ -8,13 +8,33 @@ class EspChoiceBuilder {
         this.jsonStr = jsonStr
     }
     
-    public build() {
+    /*public build() {
         def jsonResponse = this.slurper.parseText(this.jsonStr)
         def result = []
         jsonResponse.each {
             result << it.chipId + "|" + it.pioEnv
         }
 
+        return result
+    }*/
+    
+    public build() {
+        def jsonResponse = this.slurper.parseText(this.jsonStr)
+        result << extendedChoice(
+            name: 'CHIPS_CHOSEN',
+            description: 'Lorem ipsum',
+            visibleItemCount: 50,
+            multiSelectDelimiter: ',',
+            type: 'PT_CHECKBOX',
+            groovyScript: '''
+                import groovy.json.JsonSlurper
+                return [1,2,3]
+            ''',
+            descriptionGroovyScript: '''
+                import groovy.json.JsonSlurper
+                return ['A','B','C']
+            '''
+        )
         return result
     }
 }
