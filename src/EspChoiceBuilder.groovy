@@ -4,7 +4,8 @@ class EspChoiceBuilder {
     private JsonSlurper slurper = new JsonSlurper()
     String jsonStr
 
-    public EspChoiceBuilder(String jsonStr) {
+    public EspChoiceBuilder(steps, String jsonStr) {
+        print steps
         this.jsonStr = jsonStr
     }
     
