@@ -1,9 +1,7 @@
-def call(Map pipelineParams) {
-    def newChoices = new EspChoiceBuilder(this).build()
-    
-    def opts = []
-    opts.push(parameters(newChoices))
-    properties(opts)
+def call(Map pipelineParams) {  
+    def options = []
+    options.push(parameters(new EspChoiceBuilder(this).build()))
+    properties(options)
     
     pipeline {
         agent any
@@ -23,21 +21,20 @@ def call(Map pipelineParams) {
                 steps {
                     print pipelineParams
                     sh 'printenv'
-                    print buildPioEnvCommand(env.getEnvironment().CHIPS_CHOSEN)
                 }
             }
             stage('Build Binary') {
                 steps {
                     withCredentials([usernamePassword(credentialsId: '4ba76353-3bab-4d0d-9364-9f9e9909495f', passwordVariable: 'WIFI_PASS', usernameVariable: 'WIFI_SSID')]) {
-                        sh "pio run -t clean ${buildPioEnvCommand(env.getEnvironment().CHIPS_CHOSEN)}"
-                        sh "pio run ${buildPioEnvCommand(env.getEnvironment().CHIPS_CHOSEN)}"
+                        sh "pio run -t clean ${buildPioEnvCommand(env.getEnvironment().ESP_TARGETS)}"
+                        sh "pio run ${buildPioEnvCommand(env.getEnvironment().ESP_TARGETS)}"
                     }
                 }
             }
             stage('Copy Binary') {
                 steps {
                     script {
-                        def targets = env.getEnvironment().CHIPS_CHOSEN.split(",")
+                        def targets = env.getEnvironment().ESP_TARGETS.split(",")
                         // use for instead of groovy's .each!
                         for (int i = 0; i < targets.size(); i++) {
                             def parts = targets[i].split("\\|")
@@ -50,12 +47,6 @@ def call(Map pipelineParams) {
                             sh "mv ${sourceFile} ${targetFile}"
                         }
                     }
-                    /*sh '''
-                        FILENAME=.pio/build/${PIOENV}/firmware.bin
-                        TARGETNAME=/var/binfiles/${CHIPID}/${FIRMWARE_NAME}-${FIRMWARE_VERSION}.bin
-                        mkdir -p /var/binfiles/${CHIPID}
-                        mv ${FILENAME} ${TARGETNAME}
-                    '''*/
                 }
             }
         }
