@@ -41,8 +41,8 @@ def call(Map pipelineParams) {
                     script {
                         def targets = env.getEnvironment().CHIPS_CHOSEN.split(",")
                         // use for instead of groovy's .each!
-                        for (int i = 0; i < list.size(); i++) {
-                            sh "echo ${list[i]}"
+                        for (int i = 0; i < targets.size(); i++) {
+                            sh "echo ${targets[i]}"
                         }
                     }
                     /*sh '''
