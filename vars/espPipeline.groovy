@@ -39,8 +39,10 @@ def call(Map pipelineParams) {
             stage('Copy Binary') {
                 steps {
                     script {
-                        env.getEnvironment().CHIPS_CHOSEN.split(",").each { item ->
-                            sh "echo Hello ${item}"
+                        def targets = env.getEnvironment().CHIPS_CHOSEN.split(",")
+                        // use for instead of groovy's .each!
+                        for (int i = 0; i < list.size(); i++) {
+                            sh "echo ${list[i]}"
                         }
                     }
                     /*sh '''
