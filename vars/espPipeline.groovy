@@ -44,7 +44,7 @@ def call(Map pipelineParams) {
                             def sourceFile = ".pio/build/${env}/firmware.bin"
                             def targetFile = "/var/binfiles/${chipId}/${FIRMWARE_NAME}-${FIRMWARE_VERSION}.bin"
                             sh "mkdir -p /var/binfiles/${chipId}"
-                            sh "mv ${sourceFile} ${targetFile}"
+                            sh "cp ${sourceFile} ${targetFile}"
                         }
                     }
                 }
