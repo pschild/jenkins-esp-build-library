@@ -43,7 +43,12 @@ def call(Map pipelineParams) {
                         // use for instead of groovy's .each!
                         for (int i = 0; i < targets.size(); i++) {
                             def parts = targets[i].split("\\|")
-                            sh "echo ${parts[0]}"
+                            def chipId = parts[0]
+                            def env = parts[1]
+                            
+                            def sourceFile = ".pio/build/${env}/firmware.bin"
+                            def targetFile = "/var/binfiles/${chipId}/${FIRMWARE_NAME}-${FIRMWARE_VERSION}.bin"
+                            sh "echo ${chipId} ${FIRMWARE_NAME} ${FIRMWARE_VERSION}"
                         }
                     }
                     /*sh '''
