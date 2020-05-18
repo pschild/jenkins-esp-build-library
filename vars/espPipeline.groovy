@@ -11,8 +11,6 @@ def call(Map pipelineParams) {
         environment {
             FIRMWARE_NAME=resolveFirmwareName(pipelineParams.repoUrl)
             FIRMWARE_VERSION="v${BUILD_NUMBER}-${sh(script:'git rev-parse HEAD', returnStdout: true).trim().take(7)}"
-            CHIPID="${sh(script:'echo $ESP | cut -d"|" -f1', returnStdout: true).trim()}"
-            PIOENV="${sh(script:'echo $ESP | cut -d"|" -f2', returnStdout: true).trim()}"
         }
 
         stages {
@@ -28,14 +26,14 @@ def call(Map pipelineParams) {
                     print buildPioEnvCommand(env.getEnvironment().CHIPS_CHOSEN)
                 }
             }
-            /*stage('Build Binary') {
+            stage('Build Binary') {
                 steps {
                     withCredentials([usernamePassword(credentialsId: '4ba76353-3bab-4d0d-9364-9f9e9909495f', passwordVariable: 'WIFI_PASS', usernameVariable: 'WIFI_SSID')]) {
                         sh "pio run -t clean ${buildPioEnvCommand(env.getEnvironment().CHIPS_CHOSEN)}"
                         sh "pio run ${buildPioEnvCommand(env.getEnvironment().CHIPS_CHOSEN)}"
                     }
                 }
-            }*/
+            }
             stage('Copy Binary') {
                 steps {
                     script {
@@ -48,7 +46,8 @@ def call(Map pipelineParams) {
                             
                             def sourceFile = ".pio/build/${env}/firmware.bin"
                             def targetFile = "/var/binfiles/${chipId}/${FIRMWARE_NAME}-${FIRMWARE_VERSION}.bin"
-                            sh "echo ${chipId} ${FIRMWARE_NAME} ${FIRMWARE_VERSION}"
+                            sh "mkdir -p /var/binfiles/${chipId}"
+                            sh "mv ${sourceFile} ${targetFile}"
                         }
                     }
                     /*sh '''
