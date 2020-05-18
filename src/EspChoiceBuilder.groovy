@@ -8,16 +8,6 @@ class EspChoiceBuilder {
         this.scriptRef = scriptRef
     }
     
-    /*public build() {
-        def jsonResponse = this.slurper.parseText(this.jsonStr)
-        def result = []
-        jsonResponse.each {
-            result << it.chipId + "|" + it.pioEnv
-        }
-
-        return result
-    }*/
-    
     public build() {
         def jsonResponse = this.slurper.parseText(this.scriptRef.libraryResource("esp-config.json"))
         def values = []
@@ -29,8 +19,8 @@ class EspChoiceBuilder {
         
         def result = []
         result << this.scriptRef.extendedChoice(
-            name: 'CHIPS_CHOSEN',
-            description: 'Lorem ipsum',
+            name: 'ESP_TARGETS',
+            description: 'Choose for which chips to build',
             visibleItemCount: 50,
             multiSelectDelimiter: ',',
             type: 'PT_CHECKBOX',
