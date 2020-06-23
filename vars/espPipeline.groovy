@@ -26,6 +26,7 @@ def call(Map pipelineParams) {
             stage('Build Binary') {
                 steps {
                     withCredentials([usernamePassword(credentialsId: '4ba76353-3bab-4d0d-9364-9f9e9909495f', passwordVariable: 'WIFI_PASS', usernameVariable: 'WIFI_SSID')]) {
+                        sh "pio lib update"
                         sh "pio run -t clean ${buildPioEnvCommand(env.getEnvironment().ESP_TARGETS)}"
                         sh "pio run ${buildPioEnvCommand(env.getEnvironment().ESP_TARGETS)}"
                     }
